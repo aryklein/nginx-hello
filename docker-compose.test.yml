@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  sut:
+    image: busybox:latest
+    depends_on:
+      - nginx-hello
+    command: |
+      sh -c "if wget -O - nginx-hello 2>/dev/null | grep -q 'Hello World'; then 
+                 echo 'Test passed!' 
+             else 
+                 echo 'Test failed!'
+             fi"
+
+  nginx-hello:
+    build:
+      context: .
+      dockerfile: Dockerfile
