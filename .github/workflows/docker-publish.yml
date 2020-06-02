@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          persist-credentials: false
           fetch-depth: 0
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
@@ -26,7 +27,7 @@ jobs:
         run: nikola --version
       - name: Test push
         run: |
-          echo "hello" > new_file.txt
+          echo "hello" >> new_file.txt
           git config --global user.email "kleinerman@gmail.com"
           git config --global user.name "Ary Kleinerman"
           git add new_file.txt
