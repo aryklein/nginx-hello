@@ -22,4 +22,10 @@ jobs:
           pip install --upgrade "Nikola[extras]==8.0.4"
       - name: Show Nikola Version
         run: nikola --version
+      - name: Test push
+        run: |
+          echo "hello" > new_file.txt
+          git add new_file.txt
+          git commit -m "testing"
+          git push origin master
       
